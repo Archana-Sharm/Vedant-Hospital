@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, serif;
+
+  --color-primary: #0B2D4D;
+  --color-primary-dark: #08243D;
+  --color-primary-light: #1B4E72;
+  --color-primary-50: #EEF7F8;
+  --color-primary-100: #D8EEF2;
+
+  --color-accent: #0F6B78;
+  --color-accent-dark: #075563;
+  --color-accent-soft: #EEF7F8;
+
+  --color-gold: #D4A72C;
+  --color-gold-soft: #E5C15A;
+
+  --color-bg: #F7FAFB;
+  --color-surface: #FFFFFF;
+  --color-muted: #EEF7F8;
+  --color-border: rgba(11, 45, 77, 0.12);
+
+  --color-text: #183247;
+  --color-text-muted: #64748B;
+  --color-text-light: #94A3B8;
+
+  --color-success: #0F6B78;
+  --color-danger: #D94F4F;
+  --color-warning: #D4A72C;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+#root {
+  background: linear-gradient(180deg, #F7FAFB 0%, #F4F9FB 100%);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(11, 45, 77, 0.25) transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(15, 107, 120, 0.18);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
