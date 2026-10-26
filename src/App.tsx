@@ -1,28 +1,42 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
+
 import { useEffect } from 'react';
+
 import { HospitalProvider } from './context/HospitalContext';
 import { AdminAuthProvider } from './context/AdminAuthContext';
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Doctors from './pages/Doctors';
 import Specialities from './pages/Specialities';
 import Contact from './pages/Contact';
+
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminBanners from './pages/admin/AdminBanners';
 import AdminDoctors from './pages/admin/AdminDoctors';
-import AdminServices from './pages/admin/AdminServices';
+
 import AdminSpecialities from './pages/admin/AdminSpecialities';
 import AdminSocialPosts from './pages/admin/AdminSocialPosts';
 import AdminSettings from './pages/admin/AdminSettings';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return null;
 }
 
@@ -30,6 +44,7 @@ function PublicLayout() {
   return (
     <>
       <Navbar />
+
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -40,6 +55,7 @@ function PublicLayout() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
+
       <Footer />
     </>
   );
@@ -51,18 +67,60 @@ export default function App() {
       <AdminAuthProvider>
         <BrowserRouter>
           <ScrollToTop />
+
           <Routes>
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/admin/*" element={<AdminLayout />}>
-              <Route path="dashboard" element={<AdminDashboard />} />
-              <Route path="banners" element={<AdminBanners />} />
-              <Route path="doctors" element={<AdminDoctors />} />
-              <Route path="services" element={<AdminServices />} />
-              <Route path="specialities" element={<AdminSpecialities />} />
-              <Route path="social" element={<AdminSocialPosts />} />
-              <Route path="settings" element={<AdminSettings />} />
+
+            {/* ================= ADMIN LOGIN ================= */}
+
+            <Route
+              path="/admin"
+              element={<AdminLogin />}
+            />
+
+            {/* ================= ADMIN PANEL ================= */}
+
+            <Route
+              path="/admin/*"
+              element={<AdminLayout />}
+            >
+              <Route
+                path="dashboard"
+                element={<AdminDashboard />}
+              />
+
+              <Route
+                path="banners"
+                element={<AdminBanners />}
+              />
+
+              <Route
+                path="doctors"
+                element={<AdminDoctors />}
+              />
+
+              <Route
+                path="specialities"
+                element={<AdminSpecialities />}
+              />
+
+              <Route
+                path="social"
+                element={<AdminSocialPosts />}
+              />
+
+              <Route
+                path="settings"
+                element={<AdminSettings />}
+              />
             </Route>
-            <Route path="/*" element={<PublicLayout />} />
+
+            {/* ================= PUBLIC WEBSITE ================= */}
+
+            <Route
+              path="/*"
+              element={<PublicLayout />}
+            />
+
           </Routes>
         </BrowserRouter>
       </AdminAuthProvider>
